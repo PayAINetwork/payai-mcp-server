@@ -1,6 +1,8 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
+const HOST = process.argv[2] || "localhost";
+
 // create MCP Server
 const server = new McpServer({
     name: "PayAI MCP Server",
@@ -11,7 +13,7 @@ const server = new McpServer({
 server.tool(
     "explore-marketplace",
     async () => {
-        const response = await fetch(`${process.env.PAYAI_HTTP_GATEWAY_URL}/listings`);
+        const response = await fetch(`${HOST}/listings`);
         const serviceListings = await response.json();
 
         const content = [{
