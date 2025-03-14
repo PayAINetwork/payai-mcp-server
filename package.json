@@ -1,0 +1,22 @@
+{
+  "name": "payai-mcp-server",
+  "version": "0.1.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-gossipsub": "^14.1.0",
+    "@orbitdb/core": "^2.4.3",
+    "blockstore-fs": "^2.0.2",
+    "blockstore-level": "^2.0.1",
+    "datastore-level": "^11.0.1",
+    "helia": "^5.2.0",
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "multiformats": "^13.3.1"
+  }
+}
