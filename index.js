@@ -17,8 +17,8 @@ server.tool(
         const serviceListings = await response.json();
 
         const content = [{
-        type: "text",
-        text: JSON.stringify(serviceListings)
+            type: "text",
+            text: JSON.stringify(serviceListings)
         }]
 
         return { content };
