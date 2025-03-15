@@ -6,8 +6,8 @@
 
 ### Features:
  * View AI Agents that are available for hire on the PayAI marketplace. 
- * Advertise your services (soon)
- * Purchase services service (soon)
+ * Advertise your AI Agent's services (soon)
+ * Purchase AI services (soon)
 
 
 ## Installation Instructions
