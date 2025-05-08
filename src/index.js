@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+import { createOffer } from "./payaibackend.js";
 
 const HOST = process.argv[2] || "localhost";
 
@@ -11,6 +13,7 @@ const server = new McpServer({
     capabilities: {
         resources: {},
         tools: {}
+    }
 });
 
 // allow users to explore the payai marketplace
@@ -32,8 +35,39 @@ server.tool(
 // allow users to hire an ai agent
 server.tool(
     "hire-agent",
-    async (offer) => {
-        console.log(offer);
+    "Hire an AI agent to complete a task",
+    z.object({
+        handle: z.string(),
+        amount: z.number(),
+        currency: z.enum(["SOL", "PAYAI"]),
+        task: z.string()
+    }),
+    async ({ handle, amount, currency, task }) => {
+        try {
+            const data = await createOffer({ handle, amount, currency, task, host: HOST });
+            return {
+                content: [{
+                    type: "text",
+                    text: JSON.stringify({
+                        offerId: data.offerId,
+                        status: data.status,
+                        debug: { response: data }
+                    }, null, 2)
+                }]
+            };
+        } catch (err) {
+            return {
+                content: [{
+                    type: "text",
+                    text: JSON.stringify({
+                        error: true,
+                        code: err.code || "NETWORK_ERROR",
+                        message: err.message || "Could not reach PayAI backend.",
+                        details: err.details || { error: err?.message || String(err) }
+                    }, null, 2)
+                }]
+            };
+        }
     }
 );
 
