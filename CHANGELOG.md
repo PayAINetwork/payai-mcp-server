@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/payainetwork/payai-mcp-server/compare/v1.1.0...v1.2.0) (2025-05-08)
+
+
+### Features
+
+* implement 'Hire an AI Agent' tool with backend communication and error handling ([408fa77](https://github.com/payainetwork/payai-mcp-server/commit/408fa770f2a1782a5025a6e2fc773c41e5d6b500))
+
 # [1.1.0](https://github.com/payainetwork/payai-mcp-server/compare/v1.0.1...v1.1.0) (2025-05-08)
 
 
