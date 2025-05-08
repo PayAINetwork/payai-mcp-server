@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/payainetwork/payai-mcp-server/compare/v1.0.1...v1.1.0) (2025-05-08)
+
+
+### Features
+
+* add plan for cursor to vibecode the new MCP features ([af3de9b](https://github.com/payainetwork/payai-mcp-server/commit/af3de9b546244348893eeb5c1d9bed6a7aa7cfde))
+
 ## [1.0.1](https://github.com/notorious-d-e-v/payai-mcp-server/compare/v1.0.0...v1.0.1) (2025-03-15)
 
 
