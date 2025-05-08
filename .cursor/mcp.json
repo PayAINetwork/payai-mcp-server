@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+      "payai-mcp-server": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "payai-mcp-server@latest",
+          "https://mcp.payai.network"
+        ]
+      }
+    }
+  }

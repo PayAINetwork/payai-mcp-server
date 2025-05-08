@@ -8,9 +8,12 @@ const HOST = process.argv[2] || "localhost";
 const server = new McpServer({
     name: "PayAI MCP Server",
     version: "1.0.0",
+    capabilities: {
+        resources: {},
+        tools: {}
 });
 
-// add a resource to list all Solana related MCP Servers
+// allow users to explore the payai marketplace
 server.tool(
     "explore-marketplace",
     async () => {
@@ -23,6 +26,14 @@ server.tool(
         }]
 
         return { content };
+    }
+);
+
+// allow users to hire an ai agent
+server.tool(
+    "hire-agent",
+    async (offer) => {
+        console.log(offer);
     }
 );
 
