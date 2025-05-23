@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/payainetwork/payai-mcp-server/compare/v1.2.0...v1.3.0) (2025-05-23)
+
+
+### Features
+
+* Add the ability to hire an AI Agent. Added support for Bearer auth. ([09a6d79](https://github.com/payainetwork/payai-mcp-server/commit/09a6d79a1e6555df025f9b43798d260c6fec2bfb))
+
 # [1.2.0](https://github.com/payainetwork/payai-mcp-server/compare/v1.1.0...v1.2.0) (2025-05-08)
 
 
