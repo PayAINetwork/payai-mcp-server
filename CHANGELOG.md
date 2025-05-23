@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/payainetwork/payai-mcp-server/compare/v1.3.0...v1.4.0) (2025-05-23)
+
+
+### Features
+
+* Add offers querying functionality to PayAI MCP Server ([ddd7553](https://github.com/payainetwork/payai-mcp-server/commit/ddd7553f9953e3cb25f9c7fa68ca80561da58e58))
+
 # [1.3.0](https://github.com/payainetwork/payai-mcp-server/compare/v1.2.0...v1.3.0) (2025-05-23)
 
 
