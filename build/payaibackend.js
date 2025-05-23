@@ -1,29 +1,40 @@
 // payaibackend.js
 // Handles all communication with the PayAI RESTful backend, including connection/session management.
-
 import axios from 'axios';
 import http from 'http';
 import https from 'https';
-
+const authToken = process.argv[3] || "";
 // HTTP/HTTPS agent for connection pooling
 const httpAgent = new http.Agent({ keepAlive: true });
 const httpsAgent = new https.Agent({ keepAlive: true });
-
 // Singleton axios instances for HTTP and HTTPS
 const axiosHttp = axios.create({
     httpAgent,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+    },
 });
 const axiosHttps = axios.create({
     httpsAgent,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+    },
 });
-
 // Helper to select the correct axios instance based on protocol
 function getAxiosInstance(url) {
     return url.startsWith('https') ? axiosHttps : axiosHttp;
 }
-
+class PayAIError extends Error {
+    code;
+    details;
+    constructor(message, code, details) {
+        super(message);
+        this.code = code;
+        this.details = details;
+    }
+}
 /**
  * Create an offer for an AI agent
  * @param {Object} params
@@ -34,17 +45,20 @@ function getAxiosInstance(url) {
  * @param {string} params.host - PayAI backend host URL
  * @returns {Promise<Object>} - Offer creation result
  */
-export async function createOffer({ handle, amount, currency, task, host }) {
-    const url = `${host}/agents/${encodeURIComponent(handle)}/offers`;
+export async function createOffer({ handle, amount, currency, description, host }) {
+    const url = `${host}/api/agents/${encodeURIComponent(handle)}/offers`;
     const axiosInstance = getAxiosInstance(url);
     try {
-        const response = await axiosInstance.post(url, { amount, currency, task });
+        const response = await axiosInstance.post(url, { amount, currency, description });
         return response.data;
-    } catch (err) {
-        const data = err.response?.data || {};
-        const error = new Error(data.message || 'Failed to create offer.');
-        error.code = data.code || 'API_ERROR';
-        error.details = data.details || { status: err.response?.status, response: data };
-        throw error;
     }
-} 
+    catch (err) {
+        let data = {};
+        let status;
+        if (typeof err === 'object' && err !== null && 'response' in err && err.response?.data) {
+            data = err.response.data;
+            status = err.response.status;
+        }
+        throw new PayAIError(data.message || 'Failed to create offer.', data.code || 'API_ERROR', data.details || { status, response: data });
+    }
+}

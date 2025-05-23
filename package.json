@@ -29,9 +29,9 @@
     "build"
   ],
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.11.0",
-    "zod": "^3.24.4",
-    "axios": "^1.6.8"
+    "@modelcontextprotocol/sdk": "^1.11.4",
+    "axios": "^1.6.8",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
